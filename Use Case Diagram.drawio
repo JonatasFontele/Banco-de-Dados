@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-07-21T03:58:20.224Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36" etag="YvM1zsVZY4Xymvy3QzXV" version="14.9.0" type="github">
+<mxfile host="app.diagrams.net" modified="2021-07-21T04:32:07.619Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36" etag="2KiTXKh5H5isk6_i-W1C" version="14.9.0" type="github">
   <diagram id="r31NpO8StPggfQZ5wYu1" name="Page-1">
     <mxGraphModel dx="868" dy="450" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -6,14 +6,41 @@
         <mxCell id="1" parent="0" />
         <object label="Paciente" id="rq2JJRKLw_9G8wA5gH8K-1">
           <mxCell style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;shadow=0;" vertex="1" parent="1">
-            <mxGeometry x="120" y="80" width="30" height="60" as="geometry" />
+            <mxGeometry x="100" y="160" width="30" height="60" as="geometry" />
           </mxCell>
         </object>
         <mxCell id="rq2JJRKLw_9G8wA5gH8K-2" value="Recepcionista" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
-          <mxGeometry x="660" y="80" width="30" height="60" as="geometry" />
+          <mxGeometry x="510" y="110" width="30" height="60" as="geometry" />
         </mxCell>
         <mxCell id="rq2JJRKLw_9G8wA5gH8K-3" value="Médico" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
-          <mxGeometry x="660" y="250" width="30" height="60" as="geometry" />
+          <mxGeometry x="510" y="310" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rq2JJRKLw_9G8wA5gH8K-9" value="Solicita consulta" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="20" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rq2JJRKLw_9G8wA5gH8K-11" value="" style="endArrow=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="rq2JJRKLw_9G8wA5gH8K-1" target="rq2JJRKLw_9G8wA5gH8K-9">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="190" y="140" as="sourcePoint" />
+            <mxPoint x="240" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rq2JJRKLw_9G8wA5gH8K-13" value="Consulta agenda" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="100" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rq2JJRKLw_9G8wA5gH8K-14" value="" style="endArrow=none;html=1;entryX=0.5;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="rq2JJRKLw_9G8wA5gH8K-13" target="rq2JJRKLw_9G8wA5gH8K-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="410" y="160" as="sourcePoint" />
+            <mxPoint x="460" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rq2JJRKLw_9G8wA5gH8K-15" value="Marca consulta" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="180" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rq2JJRKLw_9G8wA5gH8K-16" value="" style="endArrow=none;html=1;entryX=0.5;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="rq2JJRKLw_9G8wA5gH8K-15" target="rq2JJRKLw_9G8wA5gH8K-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="420" y="230" as="sourcePoint" />
+            <mxPoint x="470" y="180" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
