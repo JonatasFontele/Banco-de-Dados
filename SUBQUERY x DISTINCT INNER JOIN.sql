@@ -1,5 +1,5 @@
--- Subconsulta correlacionada com cl·usula WHERE
-SELECT   CUSTOMERID
+-- Subconsulta correlacionada com cl√°usula WHERE
+SELECT   CUSTOMERS.CUSTOMERNAME
 FROM     CUSTOMERS
 WHERE    (SELECT Count(*)
           FROM   ORDERS
@@ -13,4 +13,4 @@ INNER JOIN      ORDERS
 ON              CUSTOMERS.CUSTOMERID=ORDERS.CUSTOMERID
 ORDER BY        CUSTOMERS.CUSTOMERNAME;
 
--- Ambas retornam o mesmo resultado e sem os valores nulos que o LEFT JOIN apresentaria, mas qual È a consulta mais r·pida?
+-- Ambas retornam o mesmo resultado e sem os valores nulos que o LEFT JOIN apresentaria, mas qual √© a consulta mais r√°pida?
