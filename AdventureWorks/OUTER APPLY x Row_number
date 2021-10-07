@@ -1,28 +1,40 @@
--- Correlated Subquery
-SELECT c.CUSTOMERID
-       , c.ACCOUNTNUMBER
-       , o.ORDERDATE
-       , o.SALESORDERID
-FROM   sales.CUSTOMER c
-       OUTER apply
-       /* This expression will get executed once for each row in the outer set (i.e. customer records 29516 & 29913) */
-       (
-       -- get the last 3 orders for the current customer in the outer set 
-       SELECT TOP 3 soh.ORDERDATE
-                      , soh.SALESORDERID
-        FROM   Sales.SALESORDERHEADER soh
-        WHERE  soh.CUSTOMERID = c.CUSTOMERID
-        ORDER  BY soh.ORDERDATE DESC) o
-WHERE  c.CUSTOMERID IN ( 29516, 29913 )
-ORDER  BY c.CUSTOMERID 
+-- CTE with Row_number function
+WITH ai
+   AS (SELECT c.CustomerID
+              , c.AccountNumber
+              , soh.OrderDate
+              , soh.SalesOrderID
+              , Row_number() -- enumerates rows using "order by" at each different CustomerID
+                  OVER (
+                    partition BY c.CustomerID
+                    ORDER BY soh.OrderDate DESC) AS CustomerIDRow
+       FROM   sales.CUSTOMER c
+              INNER JOIN sales.SalesOrderHeader soh
+                      ON c.CustomerID = soh.CustomerID
+       WHERE  c.CUSTOMERID IN ( 29516, 29913 ))
+SELECT CustomerID
+       , AccountNumber
+       , OrderDate
+       , SalesOrderID
+FROM   ai
+WHERE  CustomerIDRow BETWEEN 1 AND 3 
 
-SELECT * FROM(
-	SELECT c.CUSTOMERID
-		   , c.ACCOUNTNUMBER
-		   , soh.ORDERDATE
-		   , soh.SALESORDERID
-		   ,Row_number() OVER (partition BY c.CUSTOMERID ORDER BY soh.ORDERDATE DESC) AS CUSTOMERIDROW
-	FROM   sales.CUSTOMER c
-		   INNER JOIN Sales.SALESORDERHEADER soh ON c.CUSTOMERID = soh.CUSTOMERID
-	WHERE  c.CUSTOMERID IN ( 29516, 29913 )) a
-WHERE CUSTOMERIDROW = 1 OR CUSTOMERIDROW = 2 OR CUSTOMERIDROW = 3
+
+-- Correlated Subquery
+SELECT c.CustomerID
+       , c.AccountNumber
+       , o.OrderDate
+       , o.SalesOrderID
+FROM   sales.Customer c
+       OUTER apply /* Similar to LEFT JOIN, but can use fields from other tables referenced in Where,
+	   Functions, Top, and the right table expression will get executed once for each row in the left table.
+	   I.e. customer records 29516 & 29913 */
+       (
+       -- Get the last 3 orders for the current customer in the outer set 
+       SELECT TOP 3 soh.OrderDate
+                    , soh.SalesOrderID
+        FROM   sales.SalesOrderHeader soh
+        WHERE  soh.CustomerID = c.CustomerID
+        ORDER  BY soh.OrderDate DESC) o
+WHERE  c.CustomerID IN ( 29516, 29913 )
+ORDER  BY c.CustomerID
