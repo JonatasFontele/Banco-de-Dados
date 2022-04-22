@@ -1,2 +1,2 @@
 # Database
-Discipline from College
+Discipline from College.
